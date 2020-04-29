@@ -1,0 +1,39 @@
+4-29-20
+git checkout -b create-users-table-model
+git branch
+
+rails generate migration create_users
+  
+//mod
+class CreateUsers < ActiveRecord::Migration[6.0]
+  def change
+    create_table :users do |t|
+      t.string :username
+      t.string :email
+      t.timestamps 
+    end
+  end
+end  
+
+rails db:migrate
+  //create user.rb
+
+rails c
+User.all
+User
+User.create(username: "mashur", email: "mashur@example.com")
+user = User.first
+user
+user.email = "mashrur1@example.com" 
+user.save
+User.all
+user = User.first
+user.destroy
+User.all
+exit
+
+git status
+git add -A
+git commit -m "Add users table and user model"
+git checkout master
+git merge create-users-table-model
