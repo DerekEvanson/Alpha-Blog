@@ -5,7 +5,7 @@
     <tr>
         </tr>
         <th>Title</th>
-        <th>Actions</th>
+        <th colspan="3">Actions</th>
     </thread>
 
     <tbody>
@@ -13,8 +13,13 @@
             <tr>
                 <td><%= article.title %></td>
                 <td><%= link_to 'Show', article_path(article.id), method: :get %></td>
+                <td><%= link_to 'Edit', edit_article_path(article.id), method: :get %></td>
                 <td><%= link_to 'Delete', article_path(article.id), method: :delete %></td>
             </tr>
         <% end %>
     </tbody>
 </table>
+
+<p>
+    <%= link_to 'Create new article', new_article_path %>
+</p>
