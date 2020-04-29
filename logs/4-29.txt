@@ -37,3 +37,34 @@ git add -A
 git commit -m "Add users table and user model"
 git checkout master
 git merge create-users-table-model
+
+git checkout -b user-validations
+git branch
+rails c
+
+ user = User.new(username: "aa", email: "aa@example.com")
+  => #<User id: nil, username: "aa", email: "aa@example.com", created_at: nil, updated_at: nil>
+
+user.valid?
+  => false
+
+user.errors.full_messages
+=> ["Username is too short (minimum is 3 characters)"]
+// only works after save or valid?
+
+user = User.new(username: "aaa", email: "aaa@example.com")
+  => #<User id: nil, username: "aaa", email: "aaa@example.com", created_at: nil, updated_at: nil>
+user.save
+  => true
+
+user = User.new(username: "aaa", email: "aaa@example.com")
+  => #<User id: nil, username: "aaa", email: "aaa@example.com", created_at: nil, updated_at: nil>
+user.valid?
+  => false
+user.errors.full_messages
+  => ["Username has already been taken"]
+// note not checking case
+
+user = User.new(username: "mashur", email: "mashrur@example.com")
+...
+  => true
