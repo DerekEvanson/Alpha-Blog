@@ -1,0 +1,38 @@
+rails c
+User.create(username: "janedoe", email: "JanEDoE@example.com)
+  => #<User id: 2, username: "janedoe", email: "janedoe@example.com", created_at: "2020-04-30 16:53:24", updated_at: "2020-04-30 16:53:24">
+
+uncomment Gemfile line 23-ish for bcrypt
+run command => bundle install 
+add to usermodel => has_secure_password
+
+rails c
+rails generate migration add_password_digest_to_users
+// add to migration file => add_column :users, :password_digest, :string
+ rails db:migrate
+
+BCrypt::Password.create("password")
+  => "$2a$12$mXEHE0xucK54ek4sPLPdjeq34z8fllPebdctMoXi4iDiKzgXE7TBm"
+
+password = _
+  => "$2a$12$zW57efLC1bTrZ5T0uz.MAOu3GnHZH4mx9QjoQKpD211I7AryU/XHW"
+password
+  => "$2a$12$zW57efLC1bTrZ5T0uz.MAOu3GnHZH4mx9QjoQKpD211I7AryU/XHW"
+password.salt
+  => "$2a$12$zW57efLC1bTrZ5T0uz.MAO"
+
+user = User.last
+  => #<User id: 2, username: "janedoe", email: "janedoe@example.com", created_at: "2020-04-30 16:53:24", updated_at: "2020-04-30 16:53:24", password_digest: nil>
+user.password = "password123"
+  => "password123"
+user.save
+  =>  [["updated_at", "2020-04-30 17:22:42.382527"], ["password_digest", "$2a$12$p7dkszUdLyzKhpNKee5o1uYEjcU4bi1apRjrZiuHcB0Agi/bRLsRu"], ["id", 2]]
+  => true
+
+User.all
+
+user.authenticate("wrongpassword")
+  => false
+user.authenticate("password123")
+  => #<User id: 2, username: "janedoe", email: "janedoe@example.com", created_at: "2020-04-30 16:53:24", updated_at: "2020-04-30 17:22:42", password_digest: [FILTERED]>
+
