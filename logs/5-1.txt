@@ -1,0 +1,14 @@
+user = User.create(username: "Derek", email: "derek@email.com", password_digest: "password")
+user.valid?
+user.save
+
+// Derek = id 3
+
+article = Article.create(title: "Derek Article 1", description: "This is a test article by Derek", user_id: "3")
+// made 10
+
+https://github.com/mislav/will_paginate
+
+
+User.create(username: "User-1", email: "user@email.com", password_digest: "password")
+// made 10
