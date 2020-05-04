@@ -1,0 +1,29 @@
+// Cleared DB
+
+rails c 
+rails generate migration add_admin_to_users
+
+user = User.create(username: "UserA1", email: "email1@email.com", password_digest: "password", admin: true)
+
+User.create(username: "UserA2", email: "email2@email.com", password_digest: "password", admin: true)
+User.create(username: "User3", email: "email3@email.com", password_digest: "password", admin: true)
+User.create(username: "User4", email: "email4@email.com", password_digest: "password", admin: true)
+User.create(username: "User5", email: "email5@email.com", password_digest: "password", admin: true)
+User.create(username: "User6", email: "email6@email.com", password_digest: "password", admin: true)
+
+article = Article.create(title: "User 1 Article 1", description: "This is a test article by User 1", user_id: 1)
+
+Article.create(title: "User 1 Article 2", description: "This is a test 2 article by User 1", user_id: 1)
+Article.create(title: "User 2 Article 1", description: "This is a test article by User 2", user_id: 2)
+Article.create(title: "User 3 Article 1", description: "This is a test article by User 3", user_id: 3)
+Article.create(title: "User 4 Article 1", description: "This is a test article by User 4", user_id: 4)
+Article.create(title: "User 5 Article 1", description: "This is a test article by User 5", user_id: 5)
+Article.create(title: "User 6 Article 1", description: "This is a test article by User 6", user_id: 6)
+
+user = User.first
+user.Admin?
+  => true
+user.toggle!(:admin)
+  => false
+user.Admin?
+user.toggle!(:admin)
