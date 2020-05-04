@@ -6,17 +6,15 @@ https://alpha-blog-f532020.herokuapp.com/
 test@email.com
 test2020password
 
-Copyright ©
-
 ---
 
+Copyright © :
 Project, Course, and Design by Mashrur Hossain
 Project Completed and written by Derek Evanson
 
-WIP
-
 ---
 
+Wip:
 Administration accounts
 Article Categories
 ReadMe
