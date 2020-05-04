@@ -27,3 +27,12 @@ user.toggle!(:admin)
   => false
 user.Admin?
 user.toggle!(:admin)
+
+heroku --version
+heroku login
+heroku create
+
+https://polar-coast-75543.herokuapp.com/ | https://git.heroku.com/polar-coast-75543.git
+
+//change gem file db form sqligt to pg in dev group and production group 
+bundle install --without production
